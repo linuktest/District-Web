@@ -1,0 +1,114 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Leo Academy — {% if candidate.is_passed %}Congratulations!{% else %}Result{% endif %}{% endblock %}
+
+{% block content %}
+<div class="academy-wrapper" style="background:var(--bg-void);">
+  <div style="width:100%; max-width:560px; margin:0 auto; padding:2rem 1rem;">
+
+    {# ─── Logo ─── #}
+    <div class="text-center mb-4 section-reveal">
+      <img src="{% static 'img/logo.png' %}?v=2026" alt="Leo District 306 D3" style="height:56px;">
+    </div>
+
+    {# ─── Result Card ─── #}
+    <div class="result-card section-reveal {% if candidate.is_passed %}result-pass{% else %}result-fail{% endif %}">
+
+      {% if candidate.is_passed %}
+        {# ─── PASS ─── #}
+        <span class="result-icon">🏆</span>
+        <h1 style="font-family:var(--font-display); font-size:1.8rem; font-weight:800; color:var(--gold); margin-bottom:.5rem;">
+          Congratulations!
+        </h1>
+        <p style="color:var(--text-secondary); font-size:0.95rem; margin-bottom:0;">
+          You have successfully passed the Leo Academy Assessment.
+        </p>
+
+        <div class="score-ring my-4">
+          <span class="score-pct">{{ percentage }}%</span>
+          <span class="score-label-sm">Score</span>
+        </div>
+
+        <div style="background:rgba(212,175,55,0.08); border:1px solid rgba(212,175,55,0.25); border-radius:2px; padding:1.25rem; margin-bottom:1.5rem; text-align:left;">
+          <div class="row g-2" style="font-size:0.88rem;">
+            <div class="col-6">
+              <span style="color:var(--text-muted);">Name</span><br>
+              <strong style="color:var(--text-primary);">{{ candidate.full_name }}</strong>
+            </div>
+            <div class="col-6">
+              <span style="color:var(--text-muted);">Club</span><br>
+              <strong style="color:var(--text-primary);">{{ candidate.club_name }}</strong>
+            </div>
+            <div class="col-6 mt-2">
+              <span style="color:var(--text-muted);">Score</span><br>
+              <strong class="text-gold">{{ candidate.score }}/{{ candidate.total_marks }}</strong>
+            </div>
+            <div class="col-6 mt-2">
+              <span style="color:var(--text-muted);">Pass Mark</span><br>
+              <strong style="color:var(--text-secondary);">{{ pass_percentage }}%</strong>
+            </div>
+            <div class="col-12 mt-2">
+              <span style="color:var(--text-muted);">NIC</span><br>
+              <strong style="color:var(--text-secondary);">{{ candidate.nic }}</strong>
+            </div>
+          </div>
+        </div>
+
+        <p style="font-size:0.8rem; color:var(--text-muted); line-height:1.6;">
+          Your certificate of completion has been recorded. Please contact your Zone Chairperson
+          to collect your official certificate.
+        </p>
+
+      {% else %}
+        {# ─── FAIL ─── #}
+        <span class="result-icon">📝</span>
+        <h1 style="font-family:var(--font-display); font-size:1.8rem; font-weight:800; color:var(--text-primary); margin-bottom:.5rem;">
+          Assessment Complete
+        </h1>
+        <p style="color:var(--text-secondary); font-size:0.95rem; margin-bottom:0;">
+          Thank you for participating. Unfortunately, you did not meet the pass threshold this time.
+        </p>
+
+        <div class="score-ring my-4" style="border-color: rgba(200,200,200,0.3);">
+          <span class="score-pct" style="color:var(--text-secondary);">{{ percentage }}%</span>
+          <span class="score-label-sm">Score</span>
+        </div>
+
+        <div style="background:rgba(255,255,255,0.04); border:var(--border-subtle); border-radius:2px; padding:1.25rem; margin-bottom:1.5rem; text-align:left;">
+          <div class="row g-2" style="font-size:0.88rem;">
+            <div class="col-6">
+              <span style="color:var(--text-muted);">Name</span><br>
+              <strong style="color:var(--text-primary);">{{ candidate.full_name }}</strong>
+            </div>
+            <div class="col-6">
+              <span style="color:var(--text-muted);">Score</span><br>
+              <strong style="color:var(--text-secondary);">{{ candidate.score }}/{{ candidate.total_marks }}</strong>
+            </div>
+            <div class="col-6 mt-2">
+              <span style="color:var(--text-muted);">Required</span><br>
+              <strong style="color:var(--text-secondary);">{{ pass_percentage }}%</strong>
+            </div>
+            <div class="col-6 mt-2">
+              <span style="color:var(--text-muted);">NIC</span><br>
+              <strong style="color:var(--text-secondary);">{{ candidate.nic }}</strong>
+            </div>
+          </div>
+        </div>
+
+        <p style="font-size:0.82rem; color:var(--text-muted); line-height:1.7;">
+          Your result has been recorded. The Leo Academy is a single-attempt assessment and
+          re-attempts are not permitted. We encourage you to continue developing your Leo knowledge.
+        </p>
+
+      {% endif %}
+
+      <div class="mt-4">
+        <a href="{% url 'portal:home' %}" class="btn-gold w-100"><span>&larr; Return to Portal</span></a>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+{% endblock %}

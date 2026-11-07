@@ -1,0 +1,143 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Leadership Directory{% endblock %}
+{% block meta_description %}Meet the District Executive Committee, Directors, and Zone Chairpersons of Leo District 306 D3.{% endblock %}
+
+{% block content %}
+
+{# ─── Page Hero ─── #}
+<section style="background:var(--bg-void); padding:6rem 0 4rem; border-bottom:1px solid rgba(212,175,55,0.15);">
+  <div class="container">
+    <div class="section-reveal">
+      <span class="section-label">The Team</span>
+      <h1 class="section-title">Leadership Directory</h1>
+      <p class="section-subtitle">
+        The dedicated individuals driving District 306 D3 forward — our DEC, Directors, and Zone Chairpersons.
+      </p>
+    </div>
+  </div>
+</section>
+
+{# ─── District Executive Committee ─── #}
+{% if dec %}
+<section class="section-dark" id="dec">
+  <div class="container">
+    <div class="section-reveal mb-5">
+      <span class="section-label">District Executive Committee</span>
+      <h2 class="section-title" style="font-size:clamp(1.5rem,3vw,2.2rem);"></h2>
+      <div class="gold-divider"></div>
+    </div>
+    <div class="row g-4 justify-content-center stagger-children">
+      {% for leader in dec %}
+      <div class="col-sm-6 col-md-4 col-lg-3">
+        <div class="leadership-card section-reveal h-100">
+          <div class="photo-wrapper">
+            {% if leader.photo %}
+              <img src="{{ leader.photo.url }}" alt="{{ leader.full_name }}">
+            {% else %}
+              <span class="photo-placeholder">{{ leader.full_name|first }}</span>
+            {% endif %}
+          </div>
+          <div class="card-body">
+            <span class="role-badge">{{ leader.get_role_level_display }}</span>
+            <h3 class="text-primary mt-1 mb-0" style="font-family:var(--font-display); font-size:0.95rem; color:var(--text-primary) !important;">{{ leader.full_name }}</h3>
+            <p class="text-gold-muted" style="font-size:0.82rem; margin-top:0.2rem;">{{ leader.title }}</p>
+            {% if leader.email %}
+            <a href="mailto:{{ leader.email }}" class="text-muted-light text-decoration-none" style="font-size:0.78rem;">
+              ✉ {{ leader.email }}
+            </a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+{# ─── Directors ─── #}
+{% if directors %}
+<section class="section-card" id="directors">
+  <div class="container">
+    <div class="section-reveal mb-5">
+      <span class="section-label">Directorate</span>
+      <h2 class="section-title" style="font-size:clamp(1.5rem,3vw,2.2rem);">Directors</h2>
+      <div class="gold-divider"></div>
+    </div>
+    <div class="row g-4 stagger-children">
+      {% for leader in directors %}
+      <div class="col-sm-6 col-md-4 col-lg-3">
+        <div class="leadership-card section-reveal h-100">
+          <div class="photo-wrapper">
+            {% if leader.photo %}
+              <img src="{{ leader.photo.url }}" alt="{{ leader.full_name }}">
+            {% else %}
+              <span class="photo-placeholder">{{ leader.full_name|first }}</span>
+            {% endif %}
+          </div>
+          <div class="card-body">
+            <span class="role-badge">Director</span>
+            <h3 style="font-family:var(--font-display); font-size:0.95rem; color:var(--text-primary); margin-top:0.2rem;">{{ leader.full_name }}</h3>
+            <p class="text-gold-muted" style="font-size:0.82rem; margin-top:0.2rem;">{{ leader.title }}</p>
+            {% if leader.email %}
+            <a href="mailto:{{ leader.email }}" class="text-muted-light text-decoration-none" style="font-size:0.78rem;">✉ {{ leader.email }}</a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+{# ─── Zone/Region Chairpersons ─── #}
+{% if zone_chairs %}
+<section class="section-dark" id="zones">
+  <div class="container">
+    <div class="section-reveal mb-5">
+      <span class="section-label">Regions & Zones</span>
+      <h2 class="section-title" style="font-size:clamp(1.5rem,3vw,2.2rem);">Zone Chairpersons</h2>
+      <div class="gold-divider"></div>
+    </div>
+    <div class="row g-4 stagger-children">
+      {% for leader in zone_chairs %}
+      <div class="col-sm-6 col-md-4 col-lg-3">
+        <div class="leadership-card section-reveal h-100">
+          <div class="photo-wrapper">
+            {% if leader.photo %}
+              <img src="{{ leader.photo.url }}" alt="{{ leader.full_name }}">
+            {% else %}
+              <span class="photo-placeholder">{{ leader.full_name|first }}</span>
+            {% endif %}
+          </div>
+          <div class="card-body">
+            <span class="role-badge">Zone Chair</span>
+            <h3 style="font-family:var(--font-display); font-size:0.95rem; color:var(--text-primary); margin-top:0.2rem;">{{ leader.full_name }}</h3>
+            <p class="text-gold-muted" style="font-size:0.82rem; margin-top:0.2rem;">{{ leader.title }}</p>
+            {% if leader.email %}
+            <a href="mailto:{{ leader.email }}" class="text-muted-light text-decoration-none" style="font-size:0.78rem;">✉ {{ leader.email }}</a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+{% if not dec and not directors and not zone_chairs %}
+<section class="section-dark">
+  <div class="container">
+    <div class="no-results">
+      <p style="font-size:2rem; margin-bottom:1rem;">👑</p>
+      <p>Leadership profiles will be published here soon. Please check back later.</p>
+    </div>
+  </div>
+</section>
+{% endif %}
+
+{% endblock %}

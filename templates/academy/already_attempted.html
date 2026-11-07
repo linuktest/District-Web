@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Leo Academy — Already Attempted{% endblock %}
+
+{% block content %}
+<div class="academy-wrapper">
+  <div class="academy-card section-reveal text-center" style="border-color:rgba(212,175,55,0.25);">
+
+    <div class="academy-logo">
+      <img src="{% static 'img/logo.png' %}?v=2026" alt="Leo District 306 D3" style="height:56px;">
+    </div>
+
+    <span style="font-size:3rem; display:block; margin-bottom:1rem;">📋</span>
+
+    <h1 style="font-family:var(--font-display); font-size:1.4rem; font-weight:700; color:var(--text-primary); margin-bottom:0.5rem;">
+      Assessment Already Submitted
+    </h1>
+
+    <p style="color:var(--text-secondary); font-size:0.92rem; margin-bottom:2rem; line-height:1.7;">
+      Our records show that the NIC <strong class="text-gold">{{ candidate.nic }}</strong>
+      has already completed the Leo Academy assessment.
+      Each candidate is permitted one attempt only.
+    </p>
+
+    <div style="background:rgba(212,175,55,0.07); border:1px solid rgba(212,175,55,0.2); border-radius:2px; padding:1.25rem; margin-bottom:2rem; text-align:left;">
+      <div class="row g-2" style="font-size:0.85rem;">
+        <div class="col-6">
+          <span style="color:var(--text-muted);">Name:</span>
+          <span style="color:var(--text-primary); margin-left:.5rem;">{{ candidate.full_name }}</span>
+        </div>
+        <div class="col-6">
+          <span style="color:var(--text-muted);">Club:</span>
+          <span style="color:var(--text-primary); margin-left:.5rem;">{{ candidate.club_name }}</span>
+        </div>
+        <div class="col-6 mt-2">
+          <span style="color:var(--text-muted);">Score:</span>
+          <span class="text-gold ms-1">{{ candidate.score }}/{{ candidate.total_marks }}</span>
+        </div>
+        <div class="col-6 mt-2">
+          <span style="color:var(--text-muted);">Status:</span>
+          {% if candidate.is_passed %}
+            <span class="ms-1" style="color:#6dd49a; font-weight:600;">✓ PASSED</span>
+          {% else %}
+            <span class="ms-1" style="color:#e07070; font-weight:600;">✗ NOT PASSED</span>
+          {% endif %}
+        </div>
+        <div class="col-12 mt-2">
+          <span style="color:var(--text-muted);">Submitted:</span>
+          <span style="color:var(--text-secondary); margin-left:.5rem;">{{ candidate.submitted_at|date:"d M Y, g:i A" }}</span>
+        </div>
+      </div>
+    </div>
+
+    <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:2rem;">
+      If you believe this is an error, please contact your Zone Chairperson or District Administrator.
+    </p>
+
+    <a href="{% url 'portal:home' %}" class="btn-gold"><span>&larr; Return to Portal</span></a>
+
+  </div>
+</div>
+{% endblock %}

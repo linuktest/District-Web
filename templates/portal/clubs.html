@@ -1,0 +1,148 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Clubs Directory{% endblock %}
+{% block meta_description %}Browse all Leo Clubs in District 306 D3 — search by name, filter by region, zone, or club type.{% endblock %}
+
+{% block content %}
+
+{# ─── Page Hero ─── #}
+<section style="background:var(--bg-void); padding:6rem 0 4rem; border-bottom:1px solid rgba(212,175,55,0.15);">
+  <div class="container">
+    <div class="section-reveal">
+      <span class="section-label">The Network</span>
+      <h1 class="section-title">Clubs of District 306 D3</h1>
+      <p class="section-subtitle">
+        Search and discover all Leo Clubs across the district — by region, zone, or club type.
+      </p>
+    </div>
+  </div>
+</section>
+
+{# ─── Search & Filters ─── #}
+<section class="section-card" style="padding:2.5rem 0; border-bottom:1px solid rgba(212,175,55,0.1);">
+  <div class="container">
+    <div class="row g-2 g-md-3 align-items-end">
+
+      <div class="col-12 col-md-5">
+        <label for="club-search" class="form-label-gold">Search Clubs</label>
+        <input type="text" id="club-search" class="search-bar"
+               placeholder="Search by club name or president..." autocomplete="off">
+      </div>
+
+      <div class="col-6 col-md-2">
+        <label for="region-filter" class="form-label-gold">Region</label>
+        <select id="region-filter" class="filter-select w-100">
+          <option value="">All Regions</option>
+          {% for r in regions %}
+          <option value="{{ r }}">Region {{ r }}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <div class="col-6 col-md-2">
+        <label for="zone-filter" class="form-label-gold">Zone</label>
+        <select id="zone-filter" class="filter-select w-100">
+          <option value="">All Zones</option>
+          {% for z in zones %}
+          <option value="{{ z }}">Zone {{ z }}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <div class="col-7 col-md-2">
+        <label for="type-filter" class="form-label-gold">Type</label>
+        <select id="type-filter" class="filter-select w-100">
+          <option value="">All Types</option>
+          <option value="School">School-based</option>
+          <option value="Community">Community-based</option>
+        </select>
+      </div>
+
+      <div class="col-5 col-md-1 text-end">
+        <span class="text-gold-muted d-block text-display" style="font-size:0.78rem; padding-bottom:0.85rem; letter-spacing:.08em;">
+          {{ clubs|length }} clubs
+        </span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{# ─── Club Cards ─── #}
+<section class="section-dark" id="clubs-list">
+  <div class="container">
+
+    <div id="no-results" class="no-results" style="display:none;">
+      <p style="font-size:2rem; margin-bottom:1rem;">🔍</p>
+      <p>No clubs match your current filters. Try adjusting the search criteria.</p>
+    </div>
+
+    <div class="row g-3" id="clubs-grid">
+      {% for club in clubs %}
+      <div class="col-md-6 col-lg-4 club-card-wrapper"
+           data-name="{{ club.name|lower }}"
+           data-president="{{ club.president_name|lower }}"
+           data-region="{{ club.region }}"
+           data-zone="{{ club.zone }}"
+           data-type="{{ club.club_type }}">
+        <div class="club-card h-100">
+          <div class="d-flex justify-content-between align-items-start mb-2">
+            <div class="d-flex align-items-center gap-2">
+              <div class="club-logo-wrapper">
+                {% if club.logo %}
+                  <img src="{{ club.logo.url }}" alt="{{ club.name }} logo">
+                {% else %}
+                  <span class="club-logo-initial">{{ club.name|first|upper }}</span>
+                {% endif %}
+              </div>
+              <div class="club-name">{{ club.name }}</div>
+            </div>
+            <span class="badge-category badge-{% if club.club_type == 'School' %}school{% else %}community{% endif %}">
+              {{ club.club_type }}
+            </span>
+          </div>
+
+          <div class="club-meta mb-1">
+            <span class="text-gold-muted" style="font-size:0.78rem;">Region {{ club.region }} · Zone {{ club.zone }}</span>
+          </div>
+
+          <div class="club-meta mb-1">
+            <span style="color:var(--text-muted); font-size:0.78rem;">President:</span>
+            <span style="color:var(--text-secondary); font-size:0.82rem;"> {{ club.president_name }}</span>
+          </div>
+
+          <div class="club-meta mb-3" style="font-size:0.8rem; color:var(--text-secondary);">
+            {{ club.meeting_details|truncatechars:80 }}
+          </div>
+
+          <div class="d-flex gap-2 flex-wrap">
+            {% if club.contact_email %}
+            <a href="mailto:{{ club.contact_email }}"
+               class="btn-gold" style="font-size:0.72rem; padding:0.4rem 0.9rem;">
+              <span>Email</span>
+            </a>
+            {% endif %}
+            {% if club.facebook_url %}
+            <a href="{{ club.facebook_url }}" target="_blank" rel="noopener"
+               class="btn-gold" style="font-size:0.72rem; padding:0.4rem 0.9rem;">
+              <span>Facebook</span>
+            </a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      {% empty %}
+      <div class="col-12">
+        <div class="no-results">
+          <p style="font-size:2rem; margin-bottom:1rem;">🏛️</p>
+          <p>Clubs will appear here once they are published. Please check back soon.</p>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+  </div>
+</section>
+
+{% endblock %}

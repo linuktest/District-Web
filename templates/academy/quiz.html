@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Leo Academy — Assessment{% endblock %}
+{% block meta_description %}Leo Academy certification assessment — answer 20 questions within the time limit.{% endblock %}
+
+{% block content %}
+<div style="background:var(--bg-void); min-height:100vh; padding:2rem 0;">
+  <div class="quiz-container">
+
+    {# ─── Timer Bar ─── #}
+    <div class="quiz-timer mb-4">
+      <div style="font-family:var(--font-display); font-size:0.68rem; letter-spacing:.15em; text-transform:uppercase; color:var(--text-muted); margin-bottom:0.25rem;">Time Remaining</div>
+      <div class="timer-display" id="quiz-timer-display" data-minutes="{{ timer_minutes }}">
+        {{ timer_minutes|stringformat:"02d" }}:00
+      </div>
+    </div>
+
+    {# ─── Quiz Header ─── #}
+    <div class="mb-4 text-center">
+      <div class="section-label">Leo Academy Assessment</div>
+      <div style="font-family:var(--font-display); color:var(--text-secondary); font-size:0.9rem;">
+        Answer all {{ questions|length }} questions. Select one answer per question.
+      </div>
+    </div>
+
+    {# ─── Quiz Form ─── #}
+    <form action="{% url 'academy:submit' %}" method="POST" id="quiz-form">
+      {% csrf_token %}
+
+      {% for question in questions %}
+      <div class="question-card" id="q-{{ forloop.counter }}">
+        <div class="question-number">Question {{ forloop.counter }} of {{ questions|length }}</div>
+        <div class="question-text">{{ question.question_text }}</div>
+
+        <div class="choices">
+          {% for choice in question.choices.all %}
+          <label class="choice-label">
+            <input type="radio"
+                   name="question_{{ question.id }}"
+                   value="{{ choice.id }}"
+                   id="q{{ question.id }}_c{{ choice.id }}">
+            <span>{{ choice.choice_text }}</span>
+          </label>
+          {% endfor %}
+        </div>
+      </div>
+      {% empty %}
+      <div class="no-results">
+        <p>No questions are available yet. Please contact your administrator.</p>
+      </div>
+      {% endfor %}
+
+      {# Submit Button #}
+      {% if questions %}
+      <div class="text-center mt-4 mb-5">
+        <button type="submit" class="btn-gold-solid px-5" id="quiz-submit-btn"
+                onclick="return confirm('Are you sure you want to submit? You cannot retake this assessment.');">
+          <span>Submit Assessment &rarr;</span>
+        </button>
+        <p style="font-size:0.75rem; color:var(--text-muted); margin-top:1rem;">
+          Submission is final. The timer will auto-submit when it reaches 00:00.
+        </p>
+      </div>
+      {% endif %}
+
+    </form>
+
+  </div>
+</div>
+{% endblock %}

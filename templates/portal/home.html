@@ -1,0 +1,290 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Home{% endblock %}
+{% block meta_description %}Official home of Leo District 306 D3 — empowering young leaders through service, leadership, and opportunity.{% endblock %}
+
+{% block content %}
+
+{# HERO SECTION #}
+<section class="hero-section" id="hero">
+  <div class="hero-bg-gradient"></div>
+  <div class="hero-grid-lines"></div>
+
+  <div class="container">
+    <div class="row align-items-center min-vh-85">
+      <div class="col-lg-7">
+        <div class="hero-content">
+
+          <div class="hero-eyebrow">
+            Leo District 306 D3 · Sri Lanka
+          </div>
+
+          <h1 class="hero-title">
+            {% if config and config.hero_tagline %}
+              {{ config.hero_tagline }}
+            {% else %}
+              <span class="highlight">Serve.</span> Lead.<br>Excel.
+            {% endif %}
+          </h1>
+
+          {% if config and config.president_theme %}
+          <p class="hero-lead">{{ config.president_theme }}</p>
+          {% else %}
+          <p class="hero-lead">
+            From ashes to excellence,
+            The phoenix embodies the spirit of renewal, strength, and limitless possibility.
+            Every rise is a testament to resilience, every challenge a step towards greatness.
+            Here, leaders are reborn, purpose is redefined, and legacies take flight.
+          </p>
+          {% endif %}
+
+          <div class="d-flex flex-wrap gap-3 hero-cta-group">
+            <a href="{% url 'portal:clubs' %}" class="btn-gold-solid">
+              <span>Explore Clubs</span>
+            </a>
+            <a href="{% url 'academy:entry' %}" class="btn-gold">
+              <span>Leo Academy &rarr;</span>
+            </a>
+          </div>
+
+        </div>
+      </div>
+
+            <div class="col-lg-5 d-none d-lg-flex justify-content-center align-items-center">
+        <div class="text-center section-reveal" style="transition-delay: 200ms;">
+          <img src="{% static 'img/logo.png' %}"
+                         style="width: 320px; height: 320px; object-fit: contain; filter: drop-shadow(0 0 40px rgba(212,175,55,0.3));">
+
+
+      </div>
+    </div>
+  </div>
+</section>
+
+{# IMPACT TRACKER #}
+<section class="impact-section" id="impact">
+  <div class="container">
+    <div class="row justify-content-center">
+
+      <div class="col-4 col-md-3 stat-item section-reveal">
+        <span class="stat-number"
+              data-target="{{ config.total_clubs|default:'18' }}"
+              data-suffix="">0</span>
+        <span class="stat-label">Leo Clubs</span>
+      </div>
+
+      <div class="col-4 col-md-3 stat-item section-reveal" style="transition-delay:100ms">
+        <span class="stat-number"
+              data-target="{{ config.total_members|default:'450+' }}"
+              data-suffix="+">0</span>
+        <span class="stat-label">Active Members</span>
+      </div>
+
+      <div class="col-4 col-md-3 stat-item section-reveal" style="transition-delay:200ms">
+        <span class="stat-number"
+              data-target="{{ config.volunteer_hours|default:'200' }}"
+              data-suffix="+">0</span>
+        <span class="stat-label">Volunteer Hours</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{# ─── DISTRICT PRESIDENT'S MESSAGE ──────────────────────────────────────── #}
+<section class="president-section" id="president-message">
+  <div class="container">
+    <div class="row align-items-center g-5">
+
+      {# Photo Column #}
+      <div class="col-lg-4 d-flex justify-content-center section-reveal">
+        <div class="president-photo-wrapper">
+          <div class="president-photo-ring">
+            <div class="president-photo-inner" id="presidentPhotoInner">
+              {# Place the president's photo at static/img/president.jpg to display it here #}
+              <img src="{% static 'img/president.jpeg' %}"
+                   alt="District President"
+                   id="presidentPhoto"
+                   onerror="document.getElementById('presidentPhoto').style.display='none'; document.getElementById('presidentPlaceholder').style.display='flex';">
+              <span class="president-photo-placeholder" id="presidentPlaceholder" style="display:none; align-items:center; justify-content:center; width:100%; height:100%;">👑</span>
+            </div>
+          </div>
+          <span class="president-badge">District President</span>
+        </div>
+      </div>
+
+      {# Message Column #}
+      <div class="col-lg-8 section-reveal" style="transition-delay:150ms;">
+        <span class="section-label">A Message From Our President</span>
+        <h2 class="section-title" style="font-size:clamp(1.6rem,3vw,2.4rem); margin-bottom:1.5rem;">
+          Leading with Purpose,<br>Serving with Heart
+        </h2>
+
+        {# ── EDIT THIS MESSAGE ── #}
+        <p class="president-quote">
+          "Welcome to the official website of Leo District 306 D3. It is an honour to serve as your District President for the Leoistic Year 2026/2027. My eight-year journey in the Leo movement has strengthened my belief in the power of service, leadership, and fellowship. This year, we aim to build a stronger and more united district by empowering clubs, developing leaders, embracing innovation, and creating meaningful impact through service. Together, let us lead with humility, serve with compassion, and inspire positive change as we continue to uphold the true spirit of Leoism."
+        </p>
+
+        <div class="mt-3">
+          <div class="president-name">Leo Lion Chanuka Wijeweera</div>
+          <div class="president-title-text">District President · Leo District 306 D3 · 2026/2027</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<section class="logo-strip-section" id="partner-logos" aria-label="Partner organisations">
+  <div style="overflow:hidden; position:relative;">
+    <div class="logo-strip-track" id="logoTrack">
+      {# Set 1 — originals #}
+      <div class="logo-strip-item"><img src="{% static 'img/partners/logo1.png' %}" alt="Partner" onerror="this.closest('.logo-strip-item').style.display='none'"></div>
+      <div class="logo-strip-item"><img src="{% static 'img/partners/logo2.png' %}" alt="Partner" onerror="this.closest('.logo-strip-item').style.display='none'"></div>
+      <div class="logo-strip-item"><img src="{% static 'img/partners/logo3.png' %}" alt="Partner" onerror="this.closest('.logo-strip-item').style.display='none'"></div>
+      <div class="logo-strip-item"><img src="{% static 'img/partners/logo4.png' %}" alt="Partner" onerror="this.closest('.logo-strip-item').style.display='none'"></div>
+      <div class="logo-strip-item"><img src="{% static 'img/partners/logo5.png' %}" alt="Partner" onerror="this.closest('.logo-strip-item').style.display='none'"></div>
+      <div class="logo-strip-item"><img src="{% static 'img/partners/logo6.png' %}" alt="Partner" onerror="this.closest('.logo-strip-item').style.display='none'"></div>
+      {# Set 2 — duplicate for seamless loop #}
+      <div class="logo-strip-item"><img src="{% static 'img/partners/logo1.png' %}" alt="Partner" onerror="this.closest('.logo-strip-item').style.display='none'"></div>
+      <div class="logo-strip-item"><img src="{% static 'img/partners/logo2.png' %}" alt="Partner" onerror="this.closest('.logo-strip-item').style.display='none'"></div>
+      <div class="logo-strip-item"><img src="{% static 'img/partners/logo3.png' %}" alt="Partner" onerror="this.closest('.logo-strip-item').style.display='none'"></div>
+      <div class="logo-strip-item"><img src="{% static 'img/partners/logo4.png' %}" alt="Partner" onerror="this.closest('.logo-strip-item').style.display='none'"></div>
+      <div class="logo-strip-item"><img src="{% static 'img/partners/logo5.png' %}" alt="Partner" onerror="this.closest('.logo-strip-item').style.display='none'"></div>
+      <div class="logo-strip-item"><img src="{% static 'img/partners/logo6.png' %}" alt="Partner" onerror="this.closest('.logo-strip-item').style.display='none'"></div>
+    </div>
+  </div>
+</section>
+
+{# UPCOMING EVENTS #}
+{% if recent_events %}
+<section class="section-dark" id="events">
+  <div class="container">
+
+    <div class="section-reveal">
+      <span class="section-label">What's On</span>
+      <h2 class="section-title">Upcoming District Events</h2>
+      <div class="gold-divider"></div>
+    </div>
+
+    <div class="row g-4 mt-2 stagger-children">
+      {% for event in recent_events %}
+      <div class="col-md-6 col-lg-4">
+        <div class="card-district section-reveal h-100">
+          <div class="card-body">
+            <div class="mb-2">
+              <span class="badge-category badge-{{ event.category|lower }}">{{ event.get_category_display }}</span>
+              {% if event.president_attending %}
+              <span class="badge-president ms-1"><span class="president-cal-dot"></span> DP Attending</span>
+              {% endif %}
+            </div>
+            <h3 class="card-title h6">{{ event.title }}</h3>
+            <p class="card-text small mb-3">{{ event.description|truncatechars:100 }}</p>
+            <div class="d-flex align-items-center justify-content-between">
+              <span class="text-gold-muted" style="font-size:0.8rem; font-family: var(--font-display);">
+                {{ event.start_time|date:"d M Y" }}
+              </span>
+              <a href="{{ event.gcal_url }}" target="_blank" rel="noopener"
+                 class="text-decoration-none text-muted-light" style="font-size:0.78rem;">
+                + Add to Calendar
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <div class="text-center mt-5 section-reveal">
+      <a href="{% url 'portal:calendar' %}" class="btn-gold"><span>View Full Calendar</span></a>
+    </div>
+
+  </div>
+</section>
+{% endif %}
+
+{# HIGHLIGHTS / PRESS STREAM #}
+{% if highlights %}
+<section class="section-card" id="highlights">
+  <div class="container">
+
+    <div class="section-reveal">
+      <span class="section-label">Latest News</span>
+      <h2 class="section-title">District Highlights</h2>
+      <div class="gold-divider"></div>
+    </div>
+
+    <div class="row g-4 mt-2 stagger-children">
+      {% for item in highlights %}
+      <div class="col-md-6 col-lg-4">
+        <div class="card-district section-reveal h-100">
+          {% if item.image %}
+          <img src="{{ item.image.url }}" alt="{{ item.title }}"
+               style="width:100%; height:160px; object-fit:cover; display:block;">
+          {% endif %}
+          <div class="card-body">
+            <p class="text-gold-muted mb-1" style="font-size:0.78rem; font-family:var(--font-display); letter-spacing:.08em;">
+              {{ item.published_at|date:"d M Y" }}
+            </p>
+            <h3 class="card-title h6">{{ item.title }}</h3>
+            <p class="card-text small">{{ item.summary|truncatechars:120 }}</p>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+  </div>
+</section>
+{% endif %}
+
+{# ─── CLUB DIRECTORY CTA ────────────────────────────────────────────────── #}
+<section class="directory-cta-section" id="club-directory-cta">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-7 section-reveal">
+        <span class="directory-cta-icon">🏛️</span>
+        <span class="section-label d-block text-center">Club Network</span>
+        <h2 class="section-title" style="font-size:clamp(1.6rem,3vw,2.4rem);">
+          Explore the Club Directory
+        </h2>
+        <p class="section-subtitle mx-auto mb-4">
+          Browse all Leo Clubs in District 306 D3 — find your nearest club, connect with
+          fellow Leos, and discover opportunities to serve.
+        </p>
+        <div class="d-flex flex-wrap gap-3 justify-content-center directory-cta-group">
+          <a href="{% url 'portal:clubs' %}" class="btn-gold-solid">
+            <span>View All Clubs</span>
+          </a>
+          {# ── REPLACE # WITH YOUR EXTERNAL CLUB DIRECTORY LINK ── #}
+          <a href="#" target="_blank" rel="noopener" class="btn-gold" id="external-directory-btn">
+            <span>Official Directory &rarr;</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{# CTA - Leo Academy #}
+<section class="section-darker" id="academy-cta">
+  <div class="container">
+    <div class="row justify-content-center text-center">
+      <div class="col-lg-7 section-reveal">
+        <span class="section-label">Leo Academy</span>
+        <h2 class="section-title">Are You a Certified Leo?</h2>
+        <p class="section-subtitle mx-auto mb-4">
+          Take the official Leo Academy online assessment and earn your certification.
+          A 30-minute quiz — one chance, no retakes.
+        </p>
+        <a href="{% url 'academy:entry' %}" class="btn-gold-solid" id="home-academy-btn">
+          <span>Start the Assessment &rarr;</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

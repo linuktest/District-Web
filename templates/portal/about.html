@@ -1,0 +1,204 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}About Us{% endblock %}
+{% block meta_description %}Learn about Leo District 306 D3 — our motto, mission, vision, history, and the regions of Sri Lanka we serve.{% endblock %}
+
+{% block content %}
+
+{# ─── Page Hero ──────────────────────────── #}
+<section style="background: var(--bg-void); padding: 6rem 0 4rem; border-bottom: 1px solid rgba(212,175,55,0.15);">
+  <div class="container">
+    <div class="section-reveal">
+      <span class="section-label">Who We Are</span>
+      <h1 class="section-title" style="max-width:600px;">About Leo District 306 D3</h1>
+      <p class="section-subtitle">
+        A district built on three unshakeable pillars — empowering the next generation of leaders across Sri Lanka.
+      </p>
+    </div>
+  </div>
+</section>
+
+{# ─── MOTTO ─────────────────────────────── #}
+<section class="motto-section" id="motto">
+  <div class="container" style="position:relative; z-index:1;">
+    <div class="section-reveal">
+      <span class="section-label">Our Motto</span>
+      <div class="motto-text">"Be the number one or be the only one"</div>
+      <p class="section-subtitle mx-auto mt-3" style="max-width:480px;">
+        One mission. A lifetime of impact across Sri Lanka and beyond.
+      </p>
+      <div class="motto-dots">
+        <div class="motto-dot"></div>
+        <div class="motto-dot" style="opacity:0.7; width:10px; height:10px;"></div>
+        <div class="motto-dot"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{# ─── Mission / Vision ───────────────────── #}
+<section class="section-card" id="mission-vision">
+  <div class="container">
+    <div class="text-center mb-5 section-reveal">
+      <span class="section-label">Purpose</span>
+      <h2 class="section-title">Mission &amp; Vision</h2>
+      <div class="gold-divider mx-auto"></div>
+    </div>
+    <div class="row g-4 text-center">
+
+      <div class="col-md-6 section-reveal">
+        <div style="padding:2.5rem; border:1px solid rgba(212,175,55,0.2); border-radius:4px; height:100%; background:var(--bg-card);">
+          <div style="font-size:2.5rem; margin-bottom:1rem;">🎯</div>
+          <span class="section-label" style="display:block; text-align:center;">Our Vision</span>
+          <p class="text-muted-light mt-2" style="font-size:1rem; line-height:1.8;">
+            A district where every Leo is empowered to lead with purpose, serve with compassion, and inspire lasting change.
+          </p>
+        </div>
+      </div>
+
+      <div class="col-md-6 section-reveal" style="transition-delay:100ms">
+        <div style="padding:2.5rem; border:1px solid rgba(212,175,55,0.2); border-radius:4px; height:100%; background:var(--bg-card);">
+          <div style="font-size:2.5rem; margin-bottom:1rem;">🌟</div>
+          <span class="section-label" style="display:block; text-align:center;">Our Mission</span>
+          <p class="text-muted-light mt-2" style="font-size:1rem; line-height:1.8;">
+            A world where young people shape change through service, leadership, and
+            a deep commitment to their communities.To cultivate capable leaders, strengthen every Leo Club through collaboration and innovation, uphold excellence in administration, and create opportunities that enable members to serve communities while growing personally and professionally.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{# ─── The Pillars ───────────────────────── #}
+
+
+{# ─── Sri Lanka Coverage Map ──────────────── #}
+<section class="coverage-section" id="coverage">
+  <div class="container">
+
+    <div class="text-center mb-5 section-reveal">
+      <span class="section-label">Our Reach</span>
+      <h2 class="section-title">District Coverage</h2>
+      <div class="gold-divider mx-auto"></div>
+      <p class="section-subtitle mx-auto mt-3">
+        Leo District 306 D3 spans across Sri Lanka, uniting Leo Clubs in multiple regions and zones.
+      </p>
+    </div>
+
+    <div class="row align-items-center g-5">
+
+      {# Coverage Map Image Column #}
+      <div class="col-lg-5 section-reveal">
+        <div class="coverage-map-container">
+          <img src="{% static 'img/map.png' %}"
+               alt="Leo District 306 D3 Coverage Map"
+               style="width:100%; height:auto; object-fit:contain; border-radius:8px; filter:drop-shadow(0 0 24px rgba(212,175,55,0.18));">
+        </div>
+      </div>
+
+      {# Coverage Regions List Column #}
+      <div class="col-lg-7 section-reveal" style="transition-delay:150ms;">
+        <span class="section-label">Regions &amp; Zones</span>
+        <h3 class="section-title" style="font-size:clamp(1.4rem,2.5vw,2rem); margin-bottom:1.5rem;">
+          District 306 D3 Area Coverage
+        </h3>
+
+        {# ── Region A ── #}
+        <div class="coverage-region-item" style="align-items:flex-start;">
+          <div class="coverage-region-num">A</div>
+          <div style="flex:1;">
+            <div class="coverage-region-name">Region A</div>
+            <div style="margin-top:0.6rem; display:flex; flex-direction:column; gap:0.45rem;">
+              <div style="display:flex; align-items:center; gap:0.6rem;">
+                <span style="width:6px; height:6px; border-radius:50%; background:var(--gold,#D4AF37); flex-shrink:0;"></span>
+                <span class="coverage-region-zones" style="margin:0;">Zone A</span>
+              </div>
+              <div style="display:flex; align-items:center; gap:0.6rem;">
+                <span style="width:6px; height:6px; border-radius:50%; background:var(--gold,#D4AF37); flex-shrink:0;"></span>
+                <span class="coverage-region-zones" style="margin:0;">Zone A1</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {# ── Region B ── #}
+        <div class="coverage-region-item" style="align-items:flex-start;">
+          <div class="coverage-region-num">B</div>
+          <div style="flex:1;">
+            <div class="coverage-region-name">Region B</div>
+            <div style="margin-top:0.6rem; display:flex; flex-direction:column; gap:0.45rem;">
+              <div style="display:flex; align-items:center; gap:0.6rem;">
+                <span style="width:6px; height:6px; border-radius:50%; background:var(--gold,#D4AF37); flex-shrink:0;"></span>
+                <span class="coverage-region-zones" style="margin:0;">Zone B</span>
+              </div>
+              <div style="display:flex; align-items:center; gap:0.6rem;">
+                <span style="width:6px; height:6px; border-radius:50%; background:var(--gold,#D4AF37); flex-shrink:0;"></span>
+                <span class="coverage-region-zones" style="margin:0;">Zone B1</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <p class="text-muted-light mt-3" style="font-size:0.82rem;">
+          * District coverage is subject to the current year's chartered club distribution.
+        </p>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+{# ─── History Timeline ───────────────────── #}
+<section class="section-card" id="history">
+  <div class="container">
+    <div class="row">
+
+      <div class="col-lg-4 mb-5 mb-lg-0 section-reveal-left">
+        <span class="section-label">Our Journey</span>
+        <h2 class="section-title">District History</h2>
+        <div class="gold-divider"></div>
+        <p class="text-muted-light" style="font-size:0.95rem;">
+          Leo District 306 D3 has grown from humble beginnings into one of the most active
+          Leo Districts in the South Asian region. Our story is one of dedication, service,
+          and an unwavering commitment to youth development.
+        </p>
+      </div>
+
+      <div class="col-lg-7 offset-lg-1">
+        <div class="timeline section-reveal">
+
+          <div class="timeline-item">
+            <div class="timeline-year">ACT I</div>
+            <h3 style="font-family:var(--font-display); font-size:1rem; color:var(--text-primary);">The Legacy of Six</h3>
+            <p class="timeline-text">For 20 years, Leo Multiple District 306 united six districts—A1, A2, B1, B2, C1, and C2—to promote youth leadership, humanitarian service, and community development across Sri Lanka. This successful era culminated with the celebration of the Multiple District's 20th anniversary in the Leoistic Year 2024/25, marking two decades of impactful service and setting the stage for future growth.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-year">ACT II</div>
+            <h3 style="font-family:var(--font-display); font-size:1rem; color:var(--text-primary);">The Great Dividing Line</h3>
+            <p class="timeline-text">To accommodate the rapid expansion of the Leo movement, a nationwide redistricting was implemented for the Leoistic Year 2025/26. As part of this restructuring, Leo District 306 B1 was divided into two districts, leading to the establishment of Leo District 306 D3, created to enhance community service and provide greater leadership opportunities.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-year">ACT III</div>
+            <h3 style="font-family:var(--font-display); font-size:1rem; color:var(--text-primary);">The Pillars of The Foundation</h3>
+            <p class="timeline-text">Every great movement requires visionaries to lay the first stones and establish its core identity. To navigate this newly formed district through unchartered waters and establish a solid foundation, a dynamic and highly capable group of leaders stepped forward. This executive team was charged with the responsibility of translating a structural transition into an inspired, functional reality. Leading this historic charge as the Inaugural Team of Leo District 306 D3, these individuals pledged their dedication to bridging the legacy of the past with the immense potential of the future, steering the district toward its first milestones with clarity, integrity, and passion.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-year">ACT IV</div>
+            <h3 style="font-family:var(--font-display); font-size:1rem; color:var(--text-primary);">The Journey Begins</h3>
+            <p class="timeline-text">With the signing of the charter and the formal installation of the inaugural cabinet, Leo District 306 D3 officially initiated its operations in the Leoistic Year 2025/26. The transition from the collective heritage of 306 B1 to the fresh, ambitious horizon of 306 D3 represents more than a mere administrative shift. It is a testament to the dynamic nature of youth service—a living proof that expansion yields greater reach and deeper impact. As these young leaders set out on their historic first year, they do not merely inherit a legacy; they are actively writing a new, brilliant chapter of service, leadership, and fellowship that will inspire generations to come.</p>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{% endblock %}

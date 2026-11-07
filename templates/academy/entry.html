@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Leo Academy — Register{% endblock %}
+{% block meta_description %}Register for the Leo Academy online assessment. Enter your details to begin the certification quiz.{% endblock %}
+
+{% block content %}
+<div class="academy-wrapper">
+  <div class="academy-card section-reveal">
+
+    <div class="academy-logo">
+      <img src="{% static 'img/logo.png' %}?v=2026" alt="Leo District 306 D3">
+      <h1 style="font-family:var(--font-display); font-size:1.3rem; font-weight:700; color:var(--text-primary); margin-top:1rem; margin-bottom:0.25rem;">
+        Leo Academy
+      </h1>
+      <p style="font-size:0.82rem; color:var(--text-muted); letter-spacing:0.05em;">
+        Official Certification Assessment · District 306 D3
+      </p>
+    </div>
+
+    {% if error %}
+    <div style="background:rgba(220,50,50,0.1); border:1px solid rgba(220,50,50,0.3); border-radius:2px; padding:0.75rem 1rem; margin-bottom:1.5rem; color:#e07070; font-size:0.88rem;">
+      ⚠ {{ error }}
+    </div>
+    {% endif %}
+
+    {# Info strip #}
+    <div style="background:rgba(212,175,55,0.07); border:1px solid rgba(212,175,55,0.2); border-radius:2px; padding:1rem 1.25rem; margin-bottom:2rem;">
+      <div class="row g-2 text-center">
+        <div class="col-4">
+          <div class="text-gold" style="font-family:var(--font-display); font-size:1.2rem; font-weight:700;">20</div>
+          <div style="font-size:0.7rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:.1em;">Questions</div>
+        </div>
+        <div class="col-4">
+          <div class="text-gold" style="font-family:var(--font-display); font-size:1.2rem; font-weight:700;">30m</div>
+          <div style="font-size:0.7rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:.1em;">Duration</div>
+        </div>
+        <div class="col-4">
+          <div class="text-gold" style="font-family:var(--font-display); font-size:1.2rem; font-weight:700;">60%</div>
+          <div style="font-size:0.7rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:.1em;">Pass Mark</div>
+        </div>
+      </div>
+    </div>
+
+    <form action="{% url 'academy:verify' %}" method="POST" id="entry-form">
+      {% csrf_token %}
+
+      <div class="mb-4">
+        <label for="nic" class="form-label-gold">National Identity Card (NIC)</label>
+        <input type="text" id="nic" name="nic" class="form-control-district"
+               placeholder="e.g. 200012345678"
+               maxlength="12" required autocomplete="off">
+      </div>
+
+      <div class="mb-4">
+        <label for="full_name" class="form-label-gold">Full Name</label>
+        <input type="text" id="full_name" name="full_name" class="form-control-district"
+               placeholder="As on your ID card"
+               required autocomplete="off">
+      </div>
+
+      <div class="mb-5">
+        <label for="club_name" class="form-label-gold">Leo Club Name</label>
+        <input type="text" id="club_name" name="club_name" class="form-control-district"
+               placeholder="Your Leo Club name"
+               required autocomplete="off">
+      </div>
+
+      <p style="font-size:0.78rem; color:var(--text-muted); margin-bottom:1.5rem; line-height:1.7;">
+        ⚠ By proceeding you acknowledge that this is a <strong style="color:var(--text-secondary);">single-attempt</strong> assessment.
+        Your NIC will be registered upon submission and re-attempts will not be permitted.
+      </p>
+
+      <button type="submit" class="btn-gold-solid w-100" id="entry-submit-btn">
+        <span>Verify &amp; Begin Assessment &rarr;</span>
+      </button>
+
+    </form>
+
+  </div>
+</div>
+{% endblock %}
