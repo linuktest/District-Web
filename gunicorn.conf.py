@@ -9,3 +9,17 @@ def on_starting(server):
 
     django.setup()
     call_command("migrate", interactive=False, verbosity=1)
+
+    # Create the admin user from env vars if it does not exist yet.
+    username = os.environ.get("DJANGO_SUPERUSER_USERNAME")
+    password = os.environ.get("DJANGO_SUPERUSER_PASSWORD")
+    if username and password:
+        from django.contrib.auth import get_user_model
+
+        User = get_user_model()
+        if not User.objects.filter(username=username).exists():
+            User.objects.create_superuser(
+                username=username,
+                email=os.environ.get("DJANGO_SUPERUSER_EMAIL", ""),
+                password=password,
+            )
