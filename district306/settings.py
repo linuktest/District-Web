@@ -16,6 +16,15 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-change-me-in-producti
 DEBUG = os.environ.get('DEBUG', 'True') == 'True'
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '*').split(',')
 
+# Behind Railway's proxy: trust the forwarded scheme and allow the public domains for CSRF.
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+CSRF_TRUSTED_ORIGINS = [
+    o.strip() for o in os.environ.get(
+        'CSRF_TRUSTED_ORIGINS',
+        'https://www.leodistrict306d3.org,https://leodistrict306d3.org,https://*.up.railway.app',
+    ).split(',') if o.strip()
+]
+
 
 # ─────────────────────────────────────────────────────────────────────────────
 # Application definition
