@@ -6,9 +6,13 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib.sitemaps.views import sitemap
+from apps.portal.seo import StaticViewSitemap, robots_txt
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('robots.txt', robots_txt, name='robots'),
+    path('sitemap.xml', sitemap, {'sitemaps': {'static': StaticViewSitemap}}, name='sitemap'),
     path('', include('apps.portal.urls')),
     path('academy/', include('apps.academy.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

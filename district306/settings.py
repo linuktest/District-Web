@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sitemaps',
     # Third party
     'import_export',
     # Local apps
@@ -63,6 +64,7 @@ TEMPLATES = [
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
+                'apps.portal.seo.seo',
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
@@ -151,3 +153,7 @@ SESSION_COOKIE_AGE = 7200  # 2 hours
 ACADEMY_PASS_PERCENTAGE = 60   # Minimum score % to pass
 ACADEMY_QUIZ_QUESTIONS = 20    # Questions per quiz session
 ACADEMY_TIMER_MINUTES = 30     # Quiz duration in minutes
+
+
+# SEO: canonical public origin (no trailing slash)
+SITE_URL = os.environ.get('SITE_URL', 'https://www.leodistrict306d3.org').rstrip('/')
