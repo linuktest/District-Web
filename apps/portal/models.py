@@ -52,12 +52,13 @@ class Club(models.Model):
         ('School', 'School-based'),
         ('Community', 'Community-based'),
     ]
+    REGION_CHOICES = [('A', 'A'), ('B', 'B')]
+    ZONE_CHOICES = [('A', 'A'), ('A1', 'A1'), ('B', 'B'), ('B1', 'B1')]
     name = models.CharField(max_length=150, unique=True)
-    region = models.IntegerField()
-    zone = models.IntegerField()
+    region = models.CharField(max_length=2, choices=REGION_CHOICES)
+    zone = models.CharField(max_length=2, choices=ZONE_CHOICES)
     club_type = models.CharField(max_length=20, choices=CLUB_TYPE_CHOICES)
     president_name = models.CharField(max_length=255)
-    meeting_details = models.TextField()
     contact_email = models.EmailField()
     facebook_url = models.URLField(blank=True, null=True)
     logo = models.ImageField(upload_to='clubs/', blank=True, null=True)
