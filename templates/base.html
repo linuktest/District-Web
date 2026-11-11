@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -8,6 +9,42 @@
   {# SEO #}
   <title>{% block title %}Leo District 306 D3{% endblock %} | Official Portal</title>
   <meta name="description" content="{% block meta_description %}Official web portal of Leo District 306 D3 — serving, leading, and excelling across Sri Lanka.{% endblock %}">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="canonical" href="{{ CANONICAL_URL }}">
+
+  {# Open Graph / Twitter #}
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Leo District 306 D3">
+  <meta property="og:title" content="Leo District 306 D3 | Official Portal">
+  <meta property="og:description" content="Official web portal of Leo District 306 D3 — serving, leading, and excelling across Sri Lanka.">
+  <meta property="og:url" content="{{ CANONICAL_URL }}">
+  <meta property="og:image" content="{{ SITE_URL }}{% static 'img/logo.png' %}">
+  <meta name="twitter:card" content="summary">
+
+  {# Structured data #}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "{{ SITE_URL }}/#organization",
+        "name": "Leo District 306 D3",
+        "alternateName": ["Leo District 306 D3 Sri Lanka", "District 306 D3"],
+        "url": "{{ SITE_URL }}/",
+        "logo": "{{ SITE_URL }}{% static 'img/logo.png' %}",
+        "areaServed": "LK"
+      },
+      {
+        "@type": "WebSite",
+        "@id": "{{ SITE_URL }}/#website",
+        "name": "Leo District 306 D3",
+        "url": "{{ SITE_URL }}/",
+        "publisher": {"@id": "{{ SITE_URL }}/#organization"}
+      }
+    ]
+  }
+  </script>
 
   {# Fonts — display:swap for immediate text render #}
   <link rel="preconnect" href="https://fonts.googleapis.com">
