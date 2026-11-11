@@ -107,13 +107,9 @@
             <span class="text-gold-muted" style="font-size:0.78rem;">Region {{ club.region }} · Zone {{ club.zone }}</span>
           </div>
 
-          <div class="club-meta mb-1">
+          <div class="club-meta mb-3">
             <span style="color:var(--text-muted); font-size:0.78rem;">President:</span>
             <span style="color:var(--text-secondary); font-size:0.82rem;"> {{ club.president_name }}</span>
-          </div>
-
-          <div class="club-meta mb-3" style="font-size:0.8rem; color:var(--text-secondary);">
-            {{ club.meeting_details|truncatechars:80 }}
           </div>
 
           <div class="d-flex gap-2 flex-wrap">
